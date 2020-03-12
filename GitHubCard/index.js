@@ -24,7 +24,64 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+// const followersArray = [];
+
+function createComponent(obj){
+  const carddivone = document.createElement('div');
+  const cardimg = document.createElement('img');
+  const carddivtwo = document.createElement('div');
+  const cardh = document.createElement('h3');
+  const onep = document.createElement('p');
+  const twop = document.createElement('p');
+  const threep = document.createElement('p');
+  const onea = document.createElement('a');
+  const fourp = document.createElement('p');
+  const fivep = document.createElement('p');
+  const sixp = document.createElement('p');
+  
+
+ 
+  carddivone.appendChild(cardimg);
+  carddivone.appendChild(carddivtwo);
+  carddivone.appendChild(firstParagraph);
+  carddivone.appendChild(cardh);
+  carddivone.appendChild(onep);
+  carddivone.appendChild(twop);
+  carddivone.appendChild(threep);
+  carddivone.appendChild(onea);
+  carddivone.appendChild(fourp);
+  carddivone.appendChild(fivep);
+  carddivone.appendChild(sixp);
+
+  carddivone.classList.add('card');
+  carddivtwo.classList.add('card-info');
+  cardh.classList.add('name');
+  onep.classList.add('username');
+  // expandButton.classList.add('expandButton');
+
+
+
+  cardimg.setAttribute = obj.avatar_url;
+  cardh.textContent = obj.name;
+  onep.textContent = obj.login;
+  twop.textContent = obj.location;
+  onea.textContent = obj.url;
+  fourp.textContent = obj.followers;
+  fivep.textContent = obj.following;
+  
+  
+
+  return carddivone;
+
+}
+
+const mycard =document.querySleector('.cards')
+// const articles =document.querySelector('.articles');
+
+// data.map(mapinfo => {
+//   articles.appendChild(createComponent(mapinfo))
+// })
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -53,3 +110,16 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+
+
+axios.get('https://api.github.com/users/kwmorlock')
+  .then(response => {
+  console.log(response);
+  response.data.message.forEach(cardSrc => {
+    entryPoint.append(myCard(cardSrc))
+  })
+ })
+  .catch(error => {
+  console.log("the data was not returned", error)
+})
