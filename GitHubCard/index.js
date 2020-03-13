@@ -26,12 +26,48 @@
 
 // const followersArray = [];
 
+// const mycardparent =document.querySelector('.cards')
+//mycardparent here so its available to other functions
+
+
+
+
+
+// axios.get('https://api.github.com/users/kwmorlock')
+//   .then(response => {
+//   console.log(response);
+//   // const mycardparent =document.querySleector('div.cards')
+// mycardparent.appendChild(createComponent(response.data))
+//  })
+//   .catch(error => {
+//   console.log("the data was not returned", error)
+// })
+
+
+
+// axios
+// .get('https://api.github.com/users/kwmorlock/followers')
+//   .then(response => {
+//   // console.log(response);
+//   // const mycardparent =document.querySleector('div.cards')
+// // mycardparent.appendChild(createComponent(response.data))
+// response.data.forEach(obj => {
+//   axios 
+//   .get(`https://api.github.com/users/${obj}`)
+//   .then(response => {
+//     cards.appendChild(response.data)
+//   })
+// })
+//  })
+//   .catch(error => error)
+
+
 function createComponent(obj){
   const carddivone = document.createElement('div');
   const cardimg = document.createElement('img');
   const carddivtwo = document.createElement('div');
   const cardh = document.createElement('h3');
-  const onep = document.createElement('p');
+  const login = document.createElement('p');
   const twop = document.createElement('p');
   const threep = document.createElement('p');
   const onea = document.createElement('a');
@@ -43,43 +79,115 @@ function createComponent(obj){
  
   carddivone.appendChild(cardimg);
   carddivone.appendChild(carddivtwo);
-  carddivone.appendChild(firstParagraph);
-  carddivone.appendChild(cardh);
-  carddivone.appendChild(onep);
-  carddivone.appendChild(twop);
-  carddivone.appendChild(threep);
-  carddivone.appendChild(onea);
-  carddivone.appendChild(fourp);
-  carddivone.appendChild(fivep);
-  carddivone.appendChild(sixp);
+
+  carddivtwo.appendChild(cardh);
+  carddivtwo.appendChild(login);
+  carddivtwo.appendChild(twop);
+  carddivtwo.appendChild(threep);
+
+  threep.appendChild(onea);
+
+  carddivtwo.appendChild(fourp);
+  carddivtwo.appendChild(fivep);
+  carddivtwo.appendChild(sixp);
+
+  // threep.appendChild(onea)
 
   carddivone.classList.add('card');
   carddivtwo.classList.add('card-info');
   cardh.classList.add('name');
-  onep.classList.add('username');
+  login.classList.add('username');
   // expandButton.classList.add('expandButton');
 
 
 
-  cardimg.setAttribute = obj.avatar_url;
+  cardimg.src= obj.avatar_url;
   cardh.textContent = obj.name;
-  onep.textContent = obj.login;
-  twop.textContent = obj.location;
-  onea.textContent = obj.url;
-  fourp.textContent = obj.followers;
-  fivep.textContent = obj.following;
+  login.textContent = obj.login;
+  twop.textContent = `Location ${obj.location}`;
+  onea.setAttribute('href', obj.html_url);
+  fourp.textContent = `Followers ${obj.followers}`;
+  fivep.textContent = `Following ${obj.following}`;
+  sixp.textContent = `Bio: ${obj.bio}`
   
+  onea.textContent = `Profile`;
+//pay attention to each div so it flows right and looks right
+
+
+  // threep.textContent = `Profile: ${onea}`
   
 
   return carddivone;
 
 }
 
-const mycard =document.querySleector('.cards')
+// const mycardparent =document.querySelector('.cards')
+
+// axios.get('https://api.github.com/users/kwmorlock')
+//   .then(response => {
+//   console.log(response);
+//   // const mycardparent =document.querySleector('div.cards')
+// mycardparent.appendChild(createComponent(response.data))
+//  })
+//   .catch(error => {
+//   console.log("the data was not returned", error)
+// })
+
+const cards =document.querySelector('.cards')
+
+axios.get('https://api.github.com/users/kwmorlock')
+  .then(response => {
+  console.log(response.data);
+  // const mycardparent =document.querySleector('div.cards')
+cards.appendChild(createComponent(response.data));
+ })
+  .catch(error => {
+  console.log("the data was not returned", error)
+})
+
+
+
+// const followersmeow = [
+//   'chelsabeth',
+//   'Riley-Robinson'
+// ];
+
+const followersArray = ["chelsabeth", "Riley-Robinson", "sekotszs", "imriven", "marissacooter"];
+followersArray.forEach(fourp => { axios.get(`https://api.github.com/users/${fourp}`)
+    .then(response => {
+   cards.append(createComponent(response.data))
+   });
+    // .catch(error => error)
+
+})
+
+
+// axios
+// .get('https://api.github.com/users/kwmorlock/followers')
+//   .then(response => {
+//   // console.log(response);
+//   // const mycardparent =document.querySleector('div.cards')
+// // mycardparent.appendChild(createComponent(response.data))
+// response.data.forEach(obj => {
+//   axios 
+//   .get(`https://api.github.com/users/${obj}`)
+//   .then(response => {
+//     cards.appendChild(response.data)
+//   })
+// })
+//  })
+//   .catch(error => error)
+
+
+
+
+// const mycardparent =document.querySleector('div.cards')
+// mycardparent.appendChild(createComponent)
+
 // const articles =document.querySelector('.articles');
 
-// data.map(mapinfo => {
-//   articles.appendChild(createComponent(mapinfo))
+// card.map(mapinfo => {
+//   cards.appendChild(createComponent(mapinfo))
 // })
 
 
@@ -111,15 +219,15 @@ const mycard =document.querySleector('.cards')
   bigknell
 */
 
+// const mycardparent =document.querySleector('div.cards')
+// //mycardparent here so its available to other functions
 
-
-axios.get('https://api.github.com/users/kwmorlock')
-  .then(response => {
-  console.log(response);
-  response.data.message.forEach(cardSrc => {
-    entryPoint.append(myCard(cardSrc))
-  })
- })
-  .catch(error => {
-  console.log("the data was not returned", error)
-})
+// axios.get('https://api.github.com/users/kwmorlock')
+//   .then(response => {
+//   console.log(response);
+//   // const mycardparent =document.querySleector('div.cards')
+// mycardparent.appendChild(createComponent(response.data))
+//  })
+//   .catch(error => {
+//   console.log("the data was not returned", error)
+// })
