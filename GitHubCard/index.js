@@ -24,7 +24,172 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+// const followersArray = [];
+
+// const mycardparent =document.querySelector('.cards')
+//mycardparent here so its available to other functions
+
+
+
+
+
+// axios.get('https://api.github.com/users/kwmorlock')
+//   .then(response => {
+//   console.log(response);
+//   // const mycardparent =document.querySleector('div.cards')
+// mycardparent.appendChild(createComponent(response.data))
+//  })
+//   .catch(error => {
+//   console.log("the data was not returned", error)
+// })
+
+
+
+// axios
+// .get('https://api.github.com/users/kwmorlock/followers')
+//   .then(response => {
+//   // console.log(response);
+//   // const mycardparent =document.querySleector('div.cards')
+// // mycardparent.appendChild(createComponent(response.data))
+// response.data.forEach(obj => {
+//   axios 
+//   .get(`https://api.github.com/users/${obj}`)
+//   .then(response => {
+//     cards.appendChild(response.data)
+//   })
+// })
+//  })
+//   .catch(error => error)
+
+
+function createComponent(obj){
+  const carddivone = document.createElement('div');
+  const cardimg = document.createElement('img');
+  const carddivtwo = document.createElement('div');
+  const cardh = document.createElement('h3');
+  const login = document.createElement('p');
+  const twop = document.createElement('p');
+  const threep = document.createElement('p');
+  const onea = document.createElement('a');
+  const fourp = document.createElement('p');
+  const fivep = document.createElement('p');
+  const sixp = document.createElement('p');
+  
+
+ 
+  carddivone.appendChild(cardimg);
+  carddivone.appendChild(carddivtwo);
+
+  carddivtwo.appendChild(cardh);
+  carddivtwo.appendChild(login);
+  carddivtwo.appendChild(twop);
+  carddivtwo.appendChild(threep);
+
+  threep.appendChild(onea);
+
+  carddivtwo.appendChild(fourp);
+  carddivtwo.appendChild(fivep);
+  carddivtwo.appendChild(sixp);
+
+  // threep.appendChild(onea)
+
+  carddivone.classList.add('card');
+  carddivtwo.classList.add('card-info');
+  cardh.classList.add('name');
+  login.classList.add('username');
+  // expandButton.classList.add('expandButton');
+
+
+
+  cardimg.src= obj.avatar_url;
+  cardh.textContent = obj.name;
+  login.textContent = obj.login;
+  twop.textContent = `Location ${obj.location}`;
+  onea.setAttribute('href', obj.html_url);
+  fourp.textContent = `Followers ${obj.followers}`;
+  fivep.textContent = `Following ${obj.following}`;
+  sixp.textContent = `Bio: ${obj.bio}`
+  
+  onea.textContent = `Profile`;
+//pay attention to each div so it flows right and looks right
+
+
+  // threep.textContent = `Profile: ${onea}`
+  
+
+  return carddivone;
+
+}
+
+// const mycardparent =document.querySelector('.cards')
+
+// axios.get('https://api.github.com/users/kwmorlock')
+//   .then(response => {
+//   console.log(response);
+//   // const mycardparent =document.querySleector('div.cards')
+// mycardparent.appendChild(createComponent(response.data))
+//  })
+//   .catch(error => {
+//   console.log("the data was not returned", error)
+// })
+
+const cards =document.querySelector('.cards')
+
+axios.get('https://api.github.com/users/kwmorlock')
+  .then(response => {
+  console.log(response.data);
+  // const mycardparent =document.querySleector('div.cards')
+cards.appendChild(createComponent(response.data));
+ })
+  .catch(error => {
+  console.log("the data was not returned", error)
+})
+
+
+
+// const followersmeow = [
+//   'chelsabeth',
+//   'Riley-Robinson'
+// ];
+
+const followersArray = ["chelsabeth", "Riley-Robinson", "sekotszs", "imriven", "marissacooter"];
+followersArray.forEach(fourp => { axios.get(`https://api.github.com/users/${fourp}`)
+    .then(response => {
+   cards.append(createComponent(response.data))
+   });
+    // .catch(error => error)
+
+})
+
+
+// axios
+// .get('https://api.github.com/users/kwmorlock/followers')
+//   .then(response => {
+//   // console.log(response);
+//   // const mycardparent =document.querySleector('div.cards')
+// // mycardparent.appendChild(createComponent(response.data))
+// response.data.forEach(obj => {
+//   axios 
+//   .get(`https://api.github.com/users/${obj}`)
+//   .then(response => {
+//     cards.appendChild(response.data)
+//   })
+// })
+//  })
+//   .catch(error => error)
+
+
+
+
+// const mycardparent =document.querySleector('div.cards')
+// mycardparent.appendChild(createComponent)
+
+// const articles =document.querySelector('.articles');
+
+// card.map(mapinfo => {
+//   cards.appendChild(createComponent(mapinfo))
+// })
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -53,3 +218,16 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+// const mycardparent =document.querySleector('div.cards')
+// //mycardparent here so its available to other functions
+
+// axios.get('https://api.github.com/users/kwmorlock')
+//   .then(response => {
+//   console.log(response);
+//   // const mycardparent =document.querySleector('div.cards')
+// mycardparent.appendChild(createComponent(response.data))
+//  })
+//   .catch(error => {
+//   console.log("the data was not returned", error)
+// })
